@@ -1,0 +1,24 @@
+{
+  "model": "openai",
+  "stack": "mern",
+  "projectName": "1",
+  "projectIdea": "1",
+  "created_folders": [
+    "1\\backend\\routes",
+    "1\\backend\\schema",
+    "1\\backend\\config",
+    "1\\backend\\services",
+    "1\\backend\\utils",
+    "1\\frontend\\components",
+    "1\\frontend\\pages",
+    "1\\frontend\\utils",
+    "1\\tests",
+    "1\\postman"
+  ],
+  "features_built": [
+    "login",
+    "forgotPassword"
+  ],
+  "next_tasks": [],
+  "git_committed": false
+}
