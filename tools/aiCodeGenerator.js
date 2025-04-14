@@ -19,11 +19,11 @@ Each file should include:
 - a filename with relative path from project root
 - full file content with inline comments
 
-Reply only in JSON format:
+Reply only in JSON format for example:
 [
   {
     "path": "backend/routes/auth.routes.js",
-    "content": "// route file content"
+    "content": "route file content with comments"
   },
   ...
 ]
@@ -39,6 +39,5 @@ Reply only in JSON format:
       type: "json_object",
     }, // ensure parsable output
   });
-
   return JSON.parse(res.choices[0].message.content);
 }

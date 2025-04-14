@@ -25,6 +25,7 @@ export function loadSession() {
     stack: null,
     projectName: null,
     projectIdea: null,
+    projectRoot: null,
     created_folders: [],
     features_built: [],
     next_tasks: [],

@@ -40,8 +40,8 @@ export async function handleFeatureRequest(feature) {
     return;
   }
   // Write files
-  files.forEach((file) => {
-    const fullPath = path.resolve(file.path);
+  files.files.forEach((file) => {
+    const fullPath = path.resolve(session.projectRoot, file.path);
     const dir = path.dirname(fullPath);
     if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
     fs.writeFileSync(fullPath, file.content, "utf8");

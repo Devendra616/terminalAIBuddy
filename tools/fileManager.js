@@ -51,7 +51,7 @@ function getStructure(stack) {
         "postman",
       ];
     case "html/css/js":
-      return ["css", "js", "images", "assets"];
+      return ["css", "js", "assets", "assets/images"];
     default:
       return [];
   }
@@ -129,6 +129,7 @@ export function createBaseStructure(projectName, stack) {
 
   // Update session with folder data
   const session = loadSession();
+  session.projectRoot = rootPath;
   session.created_folders = createdFolders.map((f) =>
     path.relative(process.cwd(), f)
   );
