@@ -32,7 +32,7 @@ export function initializeAIClient(model) {
 
 export function selectModel() {
   console.log("\n🤖 Choose your AI model:");
-  const options = ["OpenAI", "Gemini"];
+  const options = ["OpenAI", "Gemini (not implemented yet)"];
   const index = readlineSync.keyInSelect(options, "Select AI:");
   if (index === -1) {
     console.log("❌ No model selected. Exiting...");
@@ -40,21 +40,13 @@ export function selectModel() {
   }
 
   const model = options[index];
-  const keyPrompt = `${model} API Key: `;
-  const apiKey = readlineSync.question(keyPrompt, { hideEchoBack: true });
-
-  const envContent = `${model.toUpperCase()}_API_KEY="${apiKey}"\n`;
-  const envPath = path.join(process.cwd(), ".env");
-
-  fs.appendFileSync(envPath, envContent, "utf8");
-  console.log(`🔐 ${model} API key saved to .env`);
 
   return model.toLowerCase(); // 'openai' or 'gemini'
 }
 
 export function askProjectStack() {
   console.log("\n🧱 Choose your tech stack:");
-  const stacks = ["MERN", "Flask", "Django"];
+  const stacks = ["MERN", "Flask", "Django", "HTML/CSS/JS"];
   const index = readlineSync.keyInSelect(stacks, "Select stack:");
   if (index === -1) {
     console.log("❌ No stack selected. Exiting...");
@@ -62,4 +54,19 @@ export function askProjectStack() {
   }
 
   return stacks[index].toLowerCase();
+}
+
+let cachedOpenAI = null;
+
+export function getAIClient(model) {
+  if (model === "openai") {
+    if (!cachedOpenAI) {
+      cachedOpenAI = new OpenAI({
+        apiKey: process.env.OPENAI_API_KEY,
+      });
+    }
+    return cachedOpenAI;
+  }
+
+  throw new Error("Only OpenAI is supported for now.");
 }
