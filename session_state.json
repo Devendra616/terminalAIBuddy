@@ -1,0 +1,26 @@
+{
+  "model": "openai",
+  "stack": "mern",
+  "projectName": "studentregistration",
+  "projectIdea": "studentRegistration",
+  "projectRoot": "E:\\programming\\AI Cohort\\3.AI agent\\PROJECTS\\studentregistration",
+  "created_folders": [
+    "PROJECTS\\studentregistration\\backend\\routes",
+    "PROJECTS\\studentregistration\\backend\\schema",
+    "PROJECTS\\studentregistration\\backend\\config",
+    "PROJECTS\\studentregistration\\backend\\services",
+    "PROJECTS\\studentregistration\\backend\\utils",
+    "PROJECTS\\studentregistration\\frontend\\components",
+    "PROJECTS\\studentregistration\\frontend\\pages",
+    "PROJECTS\\studentregistration\\frontend\\utils",
+    "PROJECTS\\studentregistration\\tests",
+    "PROJECTS\\studentregistration\\postman"
+  ],
+  "features_built": [
+    "login",
+    "ForgotPassword",
+    "Admin"
+  ],
+  "next_tasks": [],
+  "git_committed": false
+}

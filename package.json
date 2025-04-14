@@ -11,6 +11,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "@google/genai": "^0.8.0",
     "abort-controller": "^3.0.0",
     "agentkeepalive": "^4.6.0",
     "asynckit": "^0.4.0",

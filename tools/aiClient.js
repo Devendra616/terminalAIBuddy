@@ -8,6 +8,7 @@ import readlineSync from "readline-sync";
 import fs from "fs";
 import path from "path";
 import OpenAI from "openai";
+import { GoogleGenAI } from "@google/genai";
 import chalk from "chalk";
 import dotenv from "dotenv";
 dotenv.config();
@@ -24,8 +25,9 @@ export function initializeAIClient(model) {
 
   // Placeholder for Gemini client integration
   if (model === "gemini") {
-    console.warn(chalk.yellow("⚠️  Gemini client not yet implemented."));
-    return null;
+    // console.warn(chalk.yellow("⚠️  Gemini client not yet implemented."));
+    return new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+    // return null;
   }
 
   throw new Error(chalk.red("Unsupported model: " + model));
@@ -33,7 +35,7 @@ export function initializeAIClient(model) {
 
 export function selectModel() {
   console.log(chalk.cyan("\n🤖 Choose your AI model:"));
-  const options = ["OpenAI", "Gemini (not implemented yet)"];
+  const options = ["OpenAI", "Gemini"];
   const index = readlineSync.keyInSelect(options, chalk.yellow("Select AI:"));
   if (index === -1) {
     console.log(chalk.red("❌ No model selected. Exiting..."));
@@ -60,14 +62,9 @@ export function askProjectStack() {
 let cachedOpenAI = null;
 
 export function getAIClient(model) {
-  if (model === "openai") {
-    if (!cachedOpenAI) {
-      cachedOpenAI = new OpenAI({
-        apiKey: process.env.OPENAI_API_KEY,
-      });
-    }
-    return cachedOpenAI;
+  if (!cachedOpenAI) {
+    return initializeAIClient(model);
   }
 
-  throw new Error("Only OpenAI is supported for now.");
+  return cachedOpenAI;
 }
