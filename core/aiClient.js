@@ -18,18 +18,24 @@ dotenv.config();
  */
 export function initializeAIClient(model) {
   if (model === "openai") {
-    return new OpenAI({
-      apiKey: process.env.OPENAI_API_KEY,
-    });
+    return {
+      client: new OpenAI({
+        apiKey: process.env.OPENAI_API_KEY,
+      }),
+      model: process.env.OPENAI_MODEL,
+    };
   }
-
-  // Placeholder for Gemini client integration
   if (model === "gemini") {
-    // console.warn(chalk.yellow("⚠️  Gemini client not yet implemented."));
-    return new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
-    // return null;
+    return {
+      client: new OpenAI({
+        apiKey: process.env.GEMINI_API_KEY,
+        baseURL: "https://generativelanguage.googleapis.com/v1beta/openai/",
+      }),
+      model: process.env.GEMINI_MODEL,
+    };
   }
 
+  console.warn(chalk.yellow(`⚠️${model} is not yet supported.`));
   throw new Error(chalk.red("Unsupported model: " + model));
 }
 
@@ -59,12 +65,12 @@ export function askProjectStack() {
   return stacks[index].toLowerCase();
 }
 
-let cachedOpenAI = null;
+let cachedAIClient = null;
 
 export function getAIClient(model) {
-  if (!cachedOpenAI) {
+  if (!cachedAIClient) {
     return initializeAIClient(model);
   }
 
-  return cachedOpenAI;
+  return cachedAIClient;
 }

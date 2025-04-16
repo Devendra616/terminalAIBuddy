@@ -5,7 +5,7 @@ import {
   selectModel,
   askProjectStack,
   initializeAIClient,
-} from "./tools/aiClient.js";
+} from "./core/aiClient.js";
 import { handleFeatureRequest } from "./core/stepHandler.js";
 
 import { saveSession, loadSession } from "./tools/sessionState.js";
@@ -90,7 +90,6 @@ async function featureLoop() {
       console.log(chalk.green("\n👋 Exiting TermiBuddy. Happy coding!"));
       break;
     }
-
     // Handle feature request using dynamic input
     await handleFeatureRequest(answer);
   }

@@ -10,7 +10,7 @@ import path from "path";
 import readlineSync from "readline-sync";
 import { saveSession, loadSession } from "../tools/sessionState.js";
 import { runCommand } from "../tools/executor.js";
-import { generateFeatureWithAI } from "../tools/aiCodeGenerator.js";
+import { generateFeatureWithAI } from "./aiCodeGenerator.js";
 
 // Dynamically import stack logic
 function getStackHandler(stack) {
@@ -40,11 +40,11 @@ export async function handleFeatureRequest(feature) {
     return;
   }
   // Write files
-  files.files.forEach((file) => {
+  files.forEach((file) => {
     const fullPath = path.resolve(session.projectRoot, file.path);
     const dir = path.dirname(fullPath);
     if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-    fs.writeFileSync(fullPath, file.content, "utf8");
+    fs.writeFileSync(fullPath, file.text, "utf8");
     console.log(`✅ Created: ${path.relative(process.cwd(), fullPath)}`);
   });
 

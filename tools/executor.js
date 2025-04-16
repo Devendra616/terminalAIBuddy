@@ -3,7 +3,6 @@ import os from "os";
 
 /**
  * Determines the appropriate shell based on OS and available shells
- * @returns {string} Path to shell executable or shell name
  */
 function getSystemShell() {
   const platform = process.platform;
@@ -27,10 +26,6 @@ function getSystemShell() {
 /**
  * Executes a system command and logs output.
  * Works in terminal-only environments, no sudo.
- *
- * @param {string} command - the shell command to run
- * @param {string} cwd - current working directory (optional)
- * @returns {Promise<void>}
  */
 export function runCommand(command, cwd = process.cwd()) {
   return new Promise((resolve, reject) => {
